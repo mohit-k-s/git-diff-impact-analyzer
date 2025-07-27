@@ -1,20 +1,8 @@
-# Reverse Project Mapper
-
-A powerful tool for analyzing JavaScript/TypeScript projects with **two complementary approaches**:
-1. **Traditional Static Analysis** - Fast, deterministic dependency parsing
-2. **AI-Powered Analysis** - Semantic understanding using Large Language Models
+# Git Diff Impact Analyzer
 
 Transform your git diff analysis from syntax-only parsing to intelligent impact assessment.
 
 ## 🚀 Features
-
-### Traditional Static Analysis
-- **Entry Point Detection**: Automatically finds entry points (index.js/ts, server.js/ts, app.js/ts)
-- **BFS Dependency Tree**: Builds complete dependency graphs using breadth-first search
-- **Import/Export Analysis**: Supports ES6 modules, CommonJS, and TypeScript
-- **Function Usage Mapping**: Tracks function definitions, calls, and variable usage
-- **Variable Impact Analysis**: Maps variables to functions and APIs they impact
-- **Cross-file Tracking**: Follows variables across file boundaries through imports/exports
 
 ### AI-Powered Analysis
 - **Semantic Understanding**: Uses LLMs to understand code context and business logic
@@ -61,22 +49,6 @@ node src/index.js /path/to/your/project
 node src/index.js /path/to/your/project --git-diff
 ```
 
-**Programmatic Usage:**
-```javascript
-import { ReverseProjectMapper } from './src/core/ReverseProjectMapper.js';
-
-const mapper = new ReverseProjectMapper('/path/to/project');
-
-// Phase 1: Build dependency tree
-const dependencyTree = await mapper.buildDependencyTree();
-
-// Phase 2: Create function usage mapping
-const functionUsageMap = await mapper.buildFunctionUsageMap(dependencyTree);
-
-// Phase 3: Generate reverse mapping
-const reverseMap = await mapper.generateReverseMap(functionUsageMap);
-```
-
 ### AI-Powered Analysis
 
 #### Cloud Models (Gemini, OpenAI, Anthropic)
@@ -84,9 +56,6 @@ const reverseMap = await mapper.generateReverseMap(functionUsageMap);
 ```bash
 # Set up API key
 export GEMINI_API_KEY="your-api-key"
-
-# Run AI analysis
-node src/ai-analyzer.js
 ```
 
 ```javascript
@@ -173,24 +142,6 @@ const analyzer = new AIGitImpactAnalyzer(projectPath, {
 
 ## 📤 Output Examples
 
-### Traditional Analysis Output
-```json
-{
-  "changedFiles": 3,
-  "impactedFunctions": [
-    "getUserData()",
-    "validateUser()",
-    "formatUserResponse()"
-  ],
-  "impactedFiles": [
-    "handlers/users.js",
-    "lib/validation.js",
-    "utils/formatting.js"
-  ],
-  "dependencyChain": ["..."]
-}
-```
-
 ### AI Analysis Output
 ```json
 {
@@ -219,63 +170,6 @@ const analyzer = new AIGitImpactAnalyzer(projectPath, {
     "confidence": 0.87,
     "explanation": "Changes to user validation logic may affect multiple user-facing features..."
   }
-}
-```
-
-## 🔗 Integration
-
-### Pre-commit Hook
-```bash
-#!/bin/sh
-# .git/hooks/pre-commit
-
-echo "🔍 Running impact analysis..."
-
-# Quick traditional analysis
-node reverse-mapper/src/index.js . --git-diff
-
-# Or comprehensive AI analysis
-# node reverse-mapper/src/ai-analyzer.js
-```
-
-### GitHub Actions
-```yaml
-name: Impact Analysis
-on: [pull_request]
-
-jobs:
-  analyze:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      
-      - name: Traditional Analysis
-        run: node reverse-mapper/src/index.js .
-      
-      - name: AI Analysis
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: node reverse-mapper/src/ai-analyzer.js
-```
-
-### VS Code Integration
-```json
-{
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "Quick Impact Analysis",
-      "type": "shell",
-      "command": "node",
-      "args": ["reverse-mapper/src/index.js", "${workspaceFolder}", "--git-diff"]
-    },
-    {
-      "label": "AI Impact Analysis",
-      "type": "shell",
-      "command": "node",
-      "args": ["reverse-mapper/src/ai-analyzer.js"]
-    }
-  ]
 }
 ```
 
@@ -328,18 +222,3 @@ jobs:
 - **Ollama not working**: Ensure `ollama serve` is running
 - **Poor quality**: Try different models or increase batch size
 - **Timeout errors**: Reduce `maxTokensPerBatch` or `batchSize`
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Add tests for new functionality
-4. Submit a pull request
-
-## 📄 License
-
-MIT License - see LICENSE file for details
-
-## 🏷️ Tags
-
-`code-analysis` `git-diff` `impact-analysis` `ai` `llm` `static-analysis` `javascript` `typescript` `gemini` `ollama` `development-tools`

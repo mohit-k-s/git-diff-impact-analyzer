@@ -1,0 +1,29 @@
+{
+  "name": "impact-analyzer",
+  "version": "2.0.0",
+  "description": "AI-powered reverse project mapper using LLMs for intelligent code analysis",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "demo": "node src/index.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.17.0",
+    "@google/generative-ai": "^0.8.0",
+    "dotenv": "^17.2.1",
+    "openai": "^4.24.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "code-analysis",
+    "git-diff",
+    "impact-analysis",
+    "ai",
+    "llm",
+    "gemini"
+  ],
+  "author": "Invenco Core Team",
+  "license": "MIT"
+}
